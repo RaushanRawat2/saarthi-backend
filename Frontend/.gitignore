@@ -12,6 +12,13 @@ dist
 dist-ssr
 *.local
 
+
+# Ignore audio files
+*.mp3
+Frontend/src/assets/audio/
+
+
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
