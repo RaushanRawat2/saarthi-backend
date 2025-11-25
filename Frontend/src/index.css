@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* SikkimMonastery360 Design System - Inspired by Sikkim's spiritual heritage */
+
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@layer base {
+  :root {
+    /* Base colors */
+    --background: 30 15% 97%;
+    --foreground: 15 25% 15%;
+
+    /* Card system */
+    --card: 28 20% 99%;
+    --card-foreground: 15 25% 15%;
+
+    /* Popover system */
+    --popover: 28 20% 99%;
+    --popover-foreground: 15 25% 15%;
+
+    /* Primary - Saffron inspired */
+    --primary: 35 85% 55%;
+    --primary-foreground: 30 15% 97%;
+
+    /* Secondary - Mountain mist */
+    --secondary: 210 15% 92%;
+    --secondary-foreground: 15 25% 15%;
+
+    /* Muted - Soft monastery stone */
+    --muted: 30 10% 94%;
+    --muted-foreground: 15 15% 45%;
+
+    /* Accent - Deep maroon */
+    --accent: 0 45% 35%;
+    --accent-foreground: 30 15% 97%;
+
+    /* Destructive */
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 30 15% 97%;
+
+    /* Borders and inputs */
+    --border: 30 12% 88%;
+    --input: 30 12% 88%;
+    --ring: 35 85% 55%;
+
+    /* Design system additions */
+    --monastery-gold: 45 90% 65%;
+    --monastery-maroon: 0 45% 25%;
+    --mountain-blue: 210 35% 45%;
+    --mountain-mist: 210 15% 85%;
+    --sunrise: 25 95% 70%;
+    --sunset: 15 85% 60%;
+
+    /* Gradients */
+    --gradient-himalayan: linear-gradient(135deg, hsl(var(--sunrise)), hsl(var(--sunset)));
+    --gradient-monastery: linear-gradient(180deg, hsl(var(--monastery-gold)), hsl(var(--primary)));
+    --gradient-mountain: linear-gradient(135deg, hsl(var(--mountain-blue)), hsl(var(--mountain-mist)));
+    --gradient-spiritual: linear-gradient(45deg, hsl(var(--monastery-maroon)), hsl(var(--accent)));
+
+    /* Shadows with spiritual warmth */
+    --shadow-monastery: 0 10px 40px -10px hsl(var(--primary) / 0.3);
+    --shadow-golden: 0 8px 32px -8px hsl(var(--monastery-gold) / 0.4);
+    --shadow-peaceful: 0 4px 20px -4px hsl(var(--mountain-blue) / 0.2);
+
+    /* Animations */
+    --transition-monastery: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-gentle: all 0.3s ease-in-out;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark mode - Evening monastery ambiance */
+    --background: 15 25% 8%;
+    --foreground: 30 15% 92%;
+
+    --card: 15 20% 12%;
+    --card-foreground: 30 15% 92%;
+
+    --popover: 15 20% 12%;
+    --popover-foreground: 30 15% 92%;
+
+    --primary: 35 85% 60%;
+    --primary-foreground: 15 25% 8%;
+
+    --secondary: 15 15% 18%;
+    --secondary-foreground: 30 15% 92%;
+
+    --muted: 15 15% 18%;
+    --muted-foreground: 30 10% 65%;
+
+    --accent: 0 45% 40%;
+    --accent-foreground: 30 15% 92%;
+
+    --destructive: 0 65% 45%;
+    --destructive-foreground: 30 15% 92%;
+
+    --border: 15 15% 22%;
+    --input: 15 15% 22%;
+    --ring: 35 85% 60%;
+
+    /* Dark mode specific gradients */
+    --gradient-himalayan: linear-gradient(135deg, hsl(25 75% 45%), hsl(15 65% 35%));
+    --gradient-monastery: linear-gradient(180deg, hsl(45 70% 45%), hsl(35 75% 45%));
+    --gradient-mountain: linear-gradient(135deg, hsl(210 25% 25%), hsl(210 15% 35%));
+    --gradient-spiritual: linear-gradient(45deg, hsl(0 35% 20%), hsl(0 45% 30%));
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .monastery-hero {
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .monastery-card {
+    padding: 1rem;
+  }
+  
+  .monastery-text {
+    font-size: 0.875rem;
+  }
+
+  /* Touch-friendly interactions */
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Optimize scrolling on mobile */
+  .overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Reduce motion for better performance */
+  * {
+    animation-duration: 0.2s !important;
+    transition-duration: 0.2s !important;
+  }
+}
+
+/* Performance optimizations for images */
+img {
+  max-width: 100%;
+  height: auto;
+  loading: lazy;
+}
+
+/* Optimize iframe loading */
+iframe {
+  loading: lazy;
+}
+
+/* Reduce layout shifts */
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}

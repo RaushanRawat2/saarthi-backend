@@ -1,0 +1,3 @@
+# Allow Google Maps iframes
+/*
+  Content-Security-Policy: default-src 'self'; frame-src 'self' https://maps.google.com https://www.google.com https://maps.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://maps.google.com https://www.google.com; style-src 'self' 'unsafe-inline' https://maps.google.com https://www.google.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https:; media-src 'self' https:;

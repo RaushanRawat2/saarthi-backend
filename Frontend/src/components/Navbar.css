@@ -1,0 +1,102 @@
+/* Shimmer animation for logo and links */
+/*
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #facc15,
+    #f97316,
+    #ec4899,
+    #f97316,
+    #facc15
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s linear infinite;
+}
+
+.shimmer-link:hover {
+  text-shadow: 0 0 8px rgba(255, 200, 80, 0.7), 0 0 12px rgba(255, 120, 50, 0.5);
+}
+
+.shimmer-button:hover {
+  box-shadow: 0 0 12px rgba(255, 200, 80, 0.5), 0 0 20px rgba(255, 120, 50, 0.3);
+}
+
+.shimmer-avatar {
+  box-shadow: 0 0 8px rgba(255, 200, 80, 0.5);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.shimmer-avatar:hover {
+  box-shadow: 0 0 12px rgba(255, 200, 80, 0.7), 0 0 20px rgba(255, 120, 50, 0.5);
+}
+*/
+
+
+
+
+
+
+/* Shimmer animation for logo and links */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Default shimmer (desktop) */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #facc15,
+    #f97316,
+    #ec4899,
+    #f97316,
+    #facc15
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s linear infinite; /* Desktop speed */
+}
+
+/* Links hover effect */
+.shimmer-link:hover {
+  text-shadow: 0 0 8px rgba(255, 200, 80, 0.7), 0 0 12px rgba(255, 120, 50, 0.5);
+}
+
+/* Buttons hover effect */
+.shimmer-button:hover {
+  box-shadow: 0 0 12px rgba(255, 200, 80, 0.5), 0 0 20px rgba(255, 120, 50, 0.3);
+}
+
+/* Avatar shimmer */
+.shimmer-avatar {
+  box-shadow: 0 0 8px rgba(255, 200, 80, 0.5);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.shimmer-avatar:hover {
+  box-shadow: 0 0 12px rgba(255, 200, 80, 0.7), 0 0 20px rgba(255, 120, 50, 0.5);
+}
+
+/* Slow down shimmer on mobile */
+@media (max-width: 768px) {
+  .shimmer-text,
+  .shimmer-link {
+    animation-duration: 12s !important; /* slower shimmer for mobile */
+  }
+}
