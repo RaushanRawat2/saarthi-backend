@@ -1,6 +1,6 @@
 const User = require("../models/User");
 const generateToken = require("../utils/generateToken");
-
+// new added here branch
 // @desc Register new user
 // @route POST /api/auth/register
 exports.registerUser = async (req, res) => {
