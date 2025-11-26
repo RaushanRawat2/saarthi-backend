@@ -13,9 +13,6 @@ dist-ssr
 *.local
 
 
-# Ignore audio files
-*.mp3
-Frontend/src/assets/audio/
 
 
 
