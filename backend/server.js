@@ -108,7 +108,7 @@ app.use(express.urlencoded({ extended: true }));
 // MongoDB Connection
 // ------------------------
 // Removed deprecated options
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/monastery-booking')
+mongoose.connect(process.env.MONGO_URI )
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log('MongoDB Connection Error:', err));
 
@@ -152,7 +152,7 @@ app.use((err, req, res, next) => {
 // ❌ app.use('*') causes crash in Node 22
 // ✔ app.use((req, res)) works universally
 app.use((req, res) => {
-  res.status(404).json({ message: 'Route not found' });
+  res.status(404).json({ message: 'Route not be found' });
 });
 
 // ------------------------

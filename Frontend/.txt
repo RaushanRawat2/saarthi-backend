@@ -1,3 +1,8 @@
+MONGO_URI="mongodb+srv://raushanvivekcyber_db_user:arijitsingh@cluster0.vy5wp37.mongodb.net/SAARTHI-"
+
+
+
+
 import { Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
