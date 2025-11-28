@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal React Test</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        const { createElement: h, useState } = React;
+        const { createRoot } = ReactDOM;
+        
+        function App() {
+            const [count, setCount] = useState(0);
+            return h('div', { style: { padding: '20px', fontFamily: 'Arial' } }, [
+                h('h1', null, 'Minimal React Test'),
+                h('p', null, `Count: ${count}`),
+                h('button', { 
+                    onClick: () => setCount(count + 1),
+                    style: { padding: '10px 20px', fontSize: '16px' }
+                }, 'Increment')
+            ]);
+        }
+        
+        const root = createRoot(document.getElementById('root'));
+        root.render(h(App));
+    </script>
+</body>
+</html>

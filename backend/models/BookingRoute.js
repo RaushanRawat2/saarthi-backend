@@ -30,7 +30,7 @@ const mongoose = require('mongoose');
 const bookingSchema = new mongoose.Schema({
   bookingId: {
     type: String,
-    unique: true,
+   // unique: true,
     required: true
   },
   user: {
@@ -122,8 +122,8 @@ bookingSchema.pre('save', async function(next) {
 });
 
 // Indexes
-bookingSchema.index({ user: 1, createdAt: -1 });
-bookingSchema.index({ event: 1 });
+//bookingSchema.index({ user: 1, createdAt: -1 });
+//bookingSchema.index({ event: 1 });
 bookingSchema.index({ bookingId: 1 }, { unique: true });
 
 module.exports = mongoose.model('Booking', bookingSchema);

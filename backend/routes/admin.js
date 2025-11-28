@@ -86,7 +86,7 @@ router.post('/verify-qr', adminAuth, async (req, res) => {
 // Get dashboard analytics
 router.get('/analytics', adminAuth, async (req, res) => {
   try {
-    const { period = 'month' } = req.query; // day, week, month, year
+    const { period = 'month' } = req.query;
 
     // Calculate date range based on period
     const now = new Date();
@@ -225,10 +225,20 @@ router.get('/analytics', adminAuth, async (req, res) => {
       { $sort: { _id: 1 } }
     ]);
 
+    // Total events and users
+    const totalEvents = await Event.countDocuments({ 
+      createdAt: { $gte: startDate } 
+    });
+    const totalUsers = await User.countDocuments({ 
+      createdAt: { $gte: startDate } 
+    });
+
     res.json({
       period,
       totalBookings,
       totalRevenue,
+      totalEvents,
+      totalUsers,
       popularMonasteries,
       eventTypeDistribution,
       dailyTrend
@@ -306,6 +316,58 @@ router.put('/bookings/:id', adminAuth, async (req, res) => {
 
   } catch (error) {
     console.error('Update booking error:', error);
+    res.status(500).json({ 
+      message: 'Server error',
+      error: error.message 
+    });
+  }
+});
+
+// Get all events for admin
+router.get('/events', adminAuth, async (req, res) => {
+  try {
+    const { page = 1, limit = 20, status } = req.query;
+
+    let filter = {};
+    if (status) filter.status = status;
+
+    const events = await Event.find(filter)
+      .populate('monastery', 'name location')
+      .sort({ date: 1 })
+      .limit(limit * 1)
+      .skip((page - 1) * limit);
+
+    const total = await Event.countDocuments(filter);
+
+    res.json({
+      events,
+      totalPages: Math.ceil(total / limit),
+      currentPage: page,
+      total
+    });
+
+  } catch (error) {
+    console.error('Get admin events error:', error);
+    res.status(500).json({ 
+      message: 'Server error',
+      error: error.message 
+    });
+  }
+});
+
+// Create monastery (admin)
+router.post('/monasteries', adminAuth, async (req, res) => {
+  try {
+    const monastery = new Monastery(req.body);
+    await monastery.save();
+
+    res.status(201).json({
+      message: 'Monastery created successfully',
+      monastery
+    });
+
+  } catch (error) {
+    console.error('Create monastery error:', error);
     res.status(500).json({ 
       message: 'Server error',
       error: error.message 

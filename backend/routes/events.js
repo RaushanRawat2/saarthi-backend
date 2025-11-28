@@ -7,6 +7,8 @@ const { auth, adminAuth } = require('../middleware/auth');
 const router = express.Router();
 
 // Get all events with filtering
+
+// Get all events with filtering
 router.get('/', async (req, res) => {
   try {
     const { 
@@ -20,7 +22,30 @@ router.get('/', async (req, res) => {
 
     let filter = { status: 'active' };
 
-    if (monastery) filter.monastery = monastery;
+    // Handle monastery filter - support both name and ObjectId
+    if (monastery) {
+      // Check if it's a valid ObjectId
+      if (monastery.match(/^[0-9a-fA-F]{24}$/)) {
+        filter.monastery = monastery;
+      } else {
+        // Search by monastery name
+        const monasteryDoc = await Monastery.findOne({ 
+          name: new RegExp(monastery, 'i') 
+        });
+        if (monasteryDoc) {
+          filter.monastery = monasteryDoc._id;
+        } else {
+          // If monastery not found, return empty results
+          return res.json({
+            events: [],
+            totalPages: 0,
+            currentPage: page,
+            total: 0
+          });
+        }
+      }
+    }
+
     if (type) filter.type = type;
     if (date) {
       const startDate = new Date(date);
